@@ -34,7 +34,7 @@ public class Consumer {
          * 订阅指定topic下所有消息<br>
          * 注意：一个consumer对象可以订阅多个topic
          */
-        /*consumer.subscribe("TopicTest12", "*");*/
+        consumer.subscribe("TopicTest12", "*");
 
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 
@@ -58,13 +58,15 @@ public class Consumer {
                         System.out.println("TopicTest11------>"+new String(msg.getBody()));
                     } else if (msg.getTags() != null 
                             && msg.getTags().equals("TagB")) {
+                        System.out.println("TopicTest11======>"+new String(msg.getBody()));
                         // 执行TagC的消费
                     } else if (msg.getTags() != null
                             && msg.getTags().equals("TagC")) {
+                        System.out.println("TopicTest11++++++>"+new String(msg.getBody()));
                         // 执行TagD的消费
                     }
                 } else if (msg.getTopic().equals("TopicTest12")) {
-                    System.out.println("TopicTest2------>"+new String(msg.getBody()));
+                    System.out.println("TopicTest12******>"+new String(msg.getBody()));
                 }
 
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;

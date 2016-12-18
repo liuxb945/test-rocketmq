@@ -46,16 +46,17 @@ public class Producer {
                     System.out.println("TopicTest11------>"+new String(msg.getBody()));
                 }
 
-                /*{
+                {
                     Message msg = new Message("TopicTest12",// topic
                             "TagB",                         // tag
                             "OrderID002",                   // key
                             ("Hello MetaQ"+i*10).getBytes());    // body
                     SendResult sendResult = producer.send(msg);
                     System.out.println(sendResult);
+                    System.out.println("TopicTest12======>"+new String(msg.getBody()));
                 }
 
-                {
+                /*{
                     Message msg = new Message("TopicTest13",// topic
                             "TagC",                         // tag
                             "OrderID003",                   // key

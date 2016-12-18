@@ -35,7 +35,7 @@ public class Consumer {
         consumer.start();
 
         // 拉取订阅主题的队列，默认队列大小是4  
-        Set<MessageQueue> mqs = consumer.fetchSubscribeMessageQueues("TopicTest1");  
+        Set<MessageQueue> mqs = consumer.fetchSubscribeMessageQueues("TopicTest");  
         for (MessageQueue mq : mqs) {  
             System.out.println("Consume from the queue: " + mq);  
             SINGLE_MQ: while (true) {  
