@@ -23,7 +23,7 @@ public class Consumer {
          * 注意：ConsumerGroupName需要由应用来保证唯一
          */
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ConsumerGroupName");
-        consumer.setNamesrvAddr("192.168.140.128:9876");
+        consumer.setNamesrvAddr("192.168.0.21:9876");
         consumer.setInstanceName("Consumber");
 
         /**

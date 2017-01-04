@@ -1,8 +1,8 @@
 package com.abcd.test.rocketmq.unique;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer;
 import com.alibaba.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
@@ -19,8 +19,9 @@ import com.alibaba.rocketmq.common.message.MessageExt;
 public class Consumer {
 
     public static void main(String[] args) throws MQClientException {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("please_rename_unique_group_name_3");
-        consumer.setNamesrvAddr("192.168.140.128:9876");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("testuniquegroup_consumer");
+        consumer.setNamesrvAddr("192.168.0.21:9876");
+        consumer.setInstanceName("Consumber");
         /**
          * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费<br>
          * 如果非第一次启动，那么按照上次消费的位置继续消费
@@ -35,8 +36,8 @@ public class Consumer {
 
             @Override
             public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
-                context.setAutoCommit(true);
-                System.out.print(Thread.currentThread().getName() + " Receive New Messages: " );
+//                context.setAutoCommit(true);
+                System.out.print(Thread.currentThread().getName() +":"+new Date()+":"+ " Receive New Messages: " );
                 for (MessageExt msg: msgs) {
                     System.out.println(msg + ", content:" + new String(msg.getBody()));
                 }

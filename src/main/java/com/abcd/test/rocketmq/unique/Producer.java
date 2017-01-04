@@ -19,11 +19,11 @@ import com.alibaba.rocketmq.remoting.exception.RemotingException;
  * Producer，发送顺序消息
  */
 public class Producer {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         try {
-            DefaultMQProducer producer = new DefaultMQProducer("please_rename_unique_group_name");
+            DefaultMQProducer producer = new DefaultMQProducer("testuniquegroup_producer");
 
-            producer.setNamesrvAddr("192.168.140.128:9876");
+            producer.setNamesrvAddr("192.168.0.21:9876");
 
             producer.start();
 
@@ -33,9 +33,14 @@ public class Producer {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dateStr = sdf.format(date);
             for (int i = 0; i < 10; i++) {
+//            	IndexChangeItem item=new IndexChangeItem();
+//            	item.setChangeId(133);
+//            	item.setChangeType(IndexChangeType.Goods_Update);
+//            	String str=JSONUtils.obj2json(item);
                 // 加个时间后缀
                 String body = dateStr + " Hello RocketMQ " + i;
-                Message msg = new Message("TopicTestjjj", tags[i % tags.length], "KEY" + i, body.getBytes());
+                String str=body;
+                Message msg = new Message("TopicTestjjj", tags[i % tags.length], "KEY" + i, str.getBytes());
 
                 SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
                     @Override
